@@ -36,7 +36,10 @@ public class Usuario {
         }
         return 0;
     }
-
+    public void save(){
+        String sql="insert into users(name,apepat,apemat,username,password,created_at,state) values('"+this.getName()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getUsername()+"','"+this.getPassword()+"',now(),'activo')";
+        con.setInsertar(sql);
+    }
     public String getId() {
         return id;
     }

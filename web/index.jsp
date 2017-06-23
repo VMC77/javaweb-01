@@ -6,7 +6,9 @@
         <title>PRUEBA BDD</title>
     </head>
     <body>
-        <form method="post" action="ServletUsuario">
+         <a href="registrar.jsp">Registrar Cuenta</a> 
+        <br>
+        <form method="post" action="ServletUsuario?accion=Ingresar">
             <table>
                 <tr>
                     <td>Usuario</td>

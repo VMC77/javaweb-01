@@ -15,20 +15,35 @@ public class ServletUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username=request.getParameter("username");
-            String password=request.getParameter("password");
-            Usuario user=new Usuario();
-            user.setUsername(username);
-            user.setPassword(password);
-            HttpSession sesion=request.getSession();
-            if(user.validar()==1){
-                System.out.println("USUARIO VALIDO");
-                sesion.setAttribute("conectado", "true");
-                response.sendRedirect("Inicio.jsp");                
-            }else{
-                System.out.println("USUARIO INVALIDO");
-                sesion.setAttribute("conectado", "false");
-                response.sendRedirect("index.jsp");   
+            Usuario user = new Usuario();
+            HttpSession sesion = request.getSession();
+            if (request.getParameter("accion").equals("Ingresar")) {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                user.setUsername(username);
+                user.setPassword(password);
+                if (user.validar() == 1) {
+                    System.out.println("USUARIO VALIDO");
+                    sesion.setAttribute("conectado", "true");
+                    response.sendRedirect("Inicio.jsp");
+                } else {
+                    System.out.println("USUARIO INVALIDO");
+                    sesion.setAttribute("conectado", "false");
+                    response.sendRedirect("index.jsp");
+                }
+            } else if (request.getParameter("accion").equals("Registrar")) {                 
+                String name = request.getParameter("name");
+                String apepat = request.getParameter("apepat");
+                String apemat = request.getParameter("apemat");
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                user.setName(name);
+                user.setApepat(apepat);
+                user.setApemat(apemat);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.save();
+                response.sendRedirect("index.jsp");
             }
         }
     }

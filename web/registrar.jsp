@@ -9,12 +9,8 @@
         <h1>Registrar mi cuenta</h1>
     </body>
     <br>
-    <form method="post" action="ServletUsuario">
+    <form method="post" action="ServletUsuario?accion=Registrar">
         <table>
-            <tr>
-                <td>Nombre</td>
-                <td><input type="text" name="name"></td>
-            </tr>
             <tr>
                 <td>Nombre</td>
                 <td><input type="text" name="name"></td>

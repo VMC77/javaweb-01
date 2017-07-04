@@ -7,31 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class ServletUsuario extends HttpServlet {
+public class ServletUser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Usuario user = new Usuario();
-            HttpSession sesion = request.getSession();
-            if (request.getParameter("accion").equals("Ingresar")) {
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                user.setUsername(username);
-                user.setPassword(password);
-                if (user.validar() == 1) {
-                    System.out.println("USUARIO VALIDO");
-                    sesion.setAttribute("conectado", "true");
-                    response.sendRedirect("Inicio.jsp");
-                } else {
-                    System.out.println("USUARIO INVALIDO");
-                    sesion.setAttribute("conectado", "false");
-                    response.sendRedirect("index.jsp");
-                }
-            } else if (request.getParameter("accion").equals("Registrar")) {                 
+            if (request.getParameter("accion").equals("registrar")) {
                 String name = request.getParameter("name");
                 String apepat = request.getParameter("apepat");
                 String apemat = request.getParameter("apemat");
@@ -43,11 +27,7 @@ public class ServletUsuario extends HttpServlet {
                 user.setUsername(username);
                 user.setPassword(password);
                 user.save();
-                response.sendRedirect("index.jsp");
-            } else if (request.getParameter("accion").equals("cerrar")){
-                //ELIMINAR SESION
-                sesion.invalidate();
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("usuarios/index.jsp");
             }
         }
     }

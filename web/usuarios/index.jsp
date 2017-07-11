@@ -21,7 +21,7 @@
         <tbody>
             <%
                 Conexion con = new Conexion();
-                con.setSql("select * from users");
+                con.setSql("select * from users where state='activo'");
                 while (con.getRs().next()) {
                     out.println("<tr>");
                             out.println("<td>"+con.getRs().getString("id")+"</td>");

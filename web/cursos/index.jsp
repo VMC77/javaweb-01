@@ -15,6 +15,8 @@
             <th>ID</th>
             <th>NOMBRE</th>
             <th>DESCRIPCION</th>
+            <th>ELIMINAR</th>
+            <th>EDITAR</th>
         </thead>
         <tbody>
             <%
@@ -25,6 +27,8 @@
                         out.println("<td>"+con.getRs().getString("id")+"</td>");
                             out.println("<td>"+con.getRs().getString("name")+"</td>");
                             out.println("<td>"+con.getRs().getString("description")+"</td>");
+                            out.println("<td><a href=''>del</a></td>");
+                            out.println("<td><a href=edit.jsp?edit="+con.getRs().getString("id")+">edit</a></td>");
                         out.println("</tr>");   
                 }
             %>

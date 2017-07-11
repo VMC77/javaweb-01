@@ -53,5 +53,8 @@ public class Course {
     }
     public void save(){
         con.setInsertar("insert into courses(name,description,created_at,state)     values('"+this.getName()+"','"+this.getDescription()+"',now(),'"+this.getState()+"')");
-    }    
+    }
+    public void update(){
+        con.setInsertar("update courses set name='"+this.getName()+"', description='"+this.getDescription()+"' where id='"+this.getId()+"'");
+    }
 }

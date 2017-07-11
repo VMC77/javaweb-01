@@ -23,6 +23,16 @@ public class ServletCurso extends HttpServlet {
               course.setState("activo");
               course.save();
               response.sendRedirect("cursos/index.jsp");
+          } else if(request.getParameter("accion").equals("actualizar")){
+              String id=request.getParameter("id");
+              String name=request.getParameter("name");
+              String description=request.getParameter("description");
+              course.setId(id);
+              course.setName(name);
+              course.setDescription(description);
+              course.setState("activo");
+              course.update();
+              response.sendRedirect("cursos/index.jsp");
           }
         }
     }

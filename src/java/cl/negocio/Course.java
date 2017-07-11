@@ -57,4 +57,7 @@ public class Course {
     public void update(){
         con.setInsertar("update courses set name='"+this.getName()+"', description='"+this.getDescription()+"' where id='"+this.getId()+"'");
     }
+    public void delete(){
+        con.setInsertar("update courses set state='pasive' where id='"+this.getId()+"'");
+    }
 }

@@ -103,5 +103,10 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public void update(){
+        con.setInsertar("update users set name='"+this.getName()+"', apepat='"+this.getApepat()+"', apemat='"+this.getApemat()+"', username='"+this.getUsername()+"', password='"+this.getPassword()+"' where id='"+this.getId()+"'");
+    }
+    public void delete(){
+        con.setInsertar("update users set state='pasive' where id='"+this.getId()+"'");
+    }
 }

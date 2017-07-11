@@ -21,13 +21,13 @@
         <tbody>
             <%
                 Conexion con = new Conexion();
-                con.setSql("select * from courses");
+                con.setSql("select * from courses where state='active'");
                 while (con.getRs().next()) {
                     out.println("<tr>");
                         out.println("<td>"+con.getRs().getString("id")+"</td>");
                             out.println("<td>"+con.getRs().getString("name")+"</td>");
                             out.println("<td>"+con.getRs().getString("description")+"</td>");
-                            out.println("<td><a href=''>del</a></td>");
+                            out.println("<td><a href='../ServletCurso?del="+con.getRs().getString("id")+"'>del</a></td>");
                             out.println("<td><a href=edit.jsp?edit="+con.getRs().getString("id")+">edit</a></td>");
                         out.println("</tr>");   
                 }

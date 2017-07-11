@@ -14,26 +14,33 @@ public class ServletCurso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          Course course=new Course();
-          if(request.getParameter("accion").equals("registrar")){
-              String name=request.getParameter("name");
-              String description=request.getParameter("description");
-              course.setName(name);
-              course.setDescription(description);
-              course.setState("activo");
-              course.save();
-              response.sendRedirect("cursos/index.jsp");
-          } else if(request.getParameter("accion").equals("actualizar")){
-              String id=request.getParameter("id");
-              String name=request.getParameter("name");
-              String description=request.getParameter("description");
-              course.setId(id);
-              course.setName(name);
-              course.setDescription(description);
-              course.setState("activo");
-              course.update();
-              response.sendRedirect("cursos/index.jsp");
-          }
+            Course course = new Course();
+            if (request.getParameter("del") == null) {
+                if (request.getParameter("accion").equals("registrar")) {
+                    String name = request.getParameter("name");
+                    String description = request.getParameter("description");
+                    course.setName(name);
+                    course.setDescription(description);
+                    course.setState("activo");
+                    course.save();
+                    response.sendRedirect("cursos/index.jsp");
+                } else if (request.getParameter("accion").equals("actualizar")) {
+                    String id = request.getParameter("id");
+                    String name = request.getParameter("name");
+                    String description = request.getParameter("description");
+                    course.setId(id);
+                    course.setName(name);
+                    course.setDescription(description);
+                    course.setState("activo");
+                    course.update();
+                    response.sendRedirect("cursos/index.jsp");
+                }
+            } else{
+                String id=request.getParameter("del");
+                course.setId(id);
+                course.delete();
+                out.println("Ha sido Eliminado <a href='cursos/index.jsp'>Volver</a>");
+            }
         }
     }
 
